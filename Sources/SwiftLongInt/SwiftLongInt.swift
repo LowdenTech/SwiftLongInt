@@ -14,25 +14,25 @@ public class LongInt: Equatable {
         return formatter
     }()
     
-    init() {}
+    public init() {}
     
     @available(iOS 16.0, *)
-    init(_ value: String = "") {
+    public init(_ value: String = "") {
         if value.wholeMatch(of: try! Regex("(^[0-9]{0,3})(,[0-9]{3})*")) != nil {
             self.value = value.split(separator: ",").reversed().map { Int($0) ?? 0 }
         }
     }
     
-    init(_ number: Int = 0) {
+    public init(_ number: Int = 0) {
         guard let value = numberFormatter.string(from: NSNumber(value: number)) else { return }
         self.value = value.split(separator: ",").reversed().map { Int($0) ?? 0 }
     }
     
-    init(_ longInt: LongInt = LongInt()) {
+    public init(_ longInt: LongInt = LongInt()) {
         self.value = longInt.value
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         var components = value.reversed().map { numberFormatter.string(from: NSNumber(value: $0)) ?? "000" }
         components[0] = String(Int(components[0]) ?? 0)
         return components.joined(separator: ",")
