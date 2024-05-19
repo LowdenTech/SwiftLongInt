@@ -5,7 +5,7 @@ import Foundation
 
 public class LongInt: Equatable {
     
-    var value: [Int] = [0]
+    public var value: [Int] = [0]
     
     private var numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -38,7 +38,7 @@ public class LongInt: Equatable {
         return components.joined(separator: ",")
     }
     
-    subscript(index: Int) -> Int {
+    public subscript(index: Int) -> Int {
         get {
             value[index]
         }
@@ -49,7 +49,7 @@ public class LongInt: Equatable {
     
     // MARK: - Addition
     
-    static func +(lhs: LongInt, rhs: LongInt) -> LongInt {
+    public static func +(lhs: LongInt, rhs: LongInt) -> LongInt {
         let result = LongInt(lhs)
         while result.value.count < rhs.value.count {
             result.value.append(0)
@@ -69,17 +69,17 @@ public class LongInt: Equatable {
         return result
     }
     
-    static func +(lhs: LongInt, rhs: Int) -> LongInt {
+    public static func +(lhs: LongInt, rhs: Int) -> LongInt {
         return lhs + LongInt(rhs)
     }
     
-    static func +(lhs: Int, rhs: LongInt) -> LongInt {
+    public static func +(lhs: Int, rhs: LongInt) -> LongInt {
         return LongInt(lhs) + rhs
     }
     
     // MARK: - Subtraction
     
-    static func -(lhs: LongInt, rhs: LongInt) -> LongInt {
+    public static func -(lhs: LongInt, rhs: LongInt) -> LongInt {
         if lhs < rhs {
             return LongInt()
         }
@@ -108,17 +108,17 @@ public class LongInt: Equatable {
         return difference
     }
     
-    static func -(lhs: LongInt, rhs: Int) -> LongInt {
+    public static func -(lhs: LongInt, rhs: Int) -> LongInt {
         return lhs - LongInt(rhs)
     }
     
-    static func -(lhs: Int, rhs: LongInt) -> LongInt {
+    public static func -(lhs: Int, rhs: LongInt) -> LongInt {
         return LongInt(lhs) - rhs
     }
     
     // MARK: - Multiplication
     
-    static func *(lhs: LongInt, rhs: LongInt) -> LongInt {
+    public static func *(lhs: LongInt, rhs: LongInt) -> LongInt {
         var product = LongInt()
         let multiplicand = lhs >= rhs ? lhs : rhs
         let multiplier = lhs <= rhs ? lhs : rhs
@@ -134,17 +134,17 @@ public class LongInt: Equatable {
         return product
     }
     
-    static func *(lhs: LongInt, rhs: Int) -> LongInt {
+    public static func *(lhs: LongInt, rhs: Int) -> LongInt {
         return lhs * LongInt(rhs)
     }
     
-    static func *(lhs: Int, rhs: LongInt) -> LongInt {
+    public static func *(lhs: Int, rhs: LongInt) -> LongInt {
         return LongInt(lhs) * rhs
     }
     
     // MARK: - Division
     
-    static func /(lhs: LongInt, rhs: LongInt) -> LongInt {
+    public static func /(lhs: LongInt, rhs: LongInt) -> LongInt {
         if rhs.toString() == "0" {
             fatalError("Can not divide by zero")
         }
@@ -169,15 +169,15 @@ public class LongInt: Equatable {
         return quotient
     }
     
-    static func /(lhs: LongInt, rhs: Int) -> LongInt {
+    public static func /(lhs: LongInt, rhs: Int) -> LongInt {
         return lhs / LongInt(rhs)
     }
     
-    static func /(lhs: Int, rhs: LongInt) -> LongInt {
+    public static func /(lhs: Int, rhs: LongInt) -> LongInt {
         return LongInt(lhs) / rhs
     }
     
-    static func ^(lhs: LongInt, rhs: Int) -> LongInt {
+    public static func ^(lhs: LongInt, rhs: Int) -> LongInt {
         var result = LongInt(lhs)
         for _ in 1..<rhs {
             result = result * lhs
@@ -199,17 +199,17 @@ public class LongInt: Equatable {
         return true
     }
     
-    static func ==(lhs: LongInt, rhs: Int) -> Bool {
+    public static func ==(lhs: LongInt, rhs: Int) -> Bool {
         return lhs == LongInt(rhs)
     }
     
-    static func ==(lhs: Int, rhs: LongInt) -> Bool {
+    public static func ==(lhs: Int, rhs: LongInt) -> Bool {
         return LongInt(lhs) == rhs
     }
     
     // MARK: - Less Than
     
-    static func <(lhs: LongInt, rhs: LongInt) -> Bool {
+    public static func <(lhs: LongInt, rhs: LongInt) -> Bool {
         if lhs.value.count > rhs.value.count {
             return false
         }
@@ -227,29 +227,29 @@ public class LongInt: Equatable {
         return false
     }
     
-    static func <(lhs: LongInt, rhs: Int) -> Bool {
+    public static func <(lhs: LongInt, rhs: Int) -> Bool {
         return lhs < LongInt(rhs)
     }
     
-    static func <(lhs: Int, rhs: LongInt) -> Bool {
+    public static func <(lhs: Int, rhs: LongInt) -> Bool {
         return LongInt(lhs) < rhs
     }
     
-    static func <=(lhs: LongInt, rhs: LongInt) -> Bool {
+    public static func <=(lhs: LongInt, rhs: LongInt) -> Bool {
         return lhs < rhs || lhs == rhs
     }
     
-    static func <=(lhs: LongInt, rhs: Int) -> Bool {
+    public static func <=(lhs: LongInt, rhs: Int) -> Bool {
         return lhs < LongInt(rhs) || lhs == LongInt(rhs)
     }
     
-    static func <=(lhs: Int, rhs: LongInt) -> Bool {
+    public static func <=(lhs: Int, rhs: LongInt) -> Bool {
         return LongInt(lhs) < rhs || LongInt(lhs) == rhs
     }
     
     // MARK: - Greater Than
     
-    static func >(lhs: LongInt, rhs: LongInt) -> Bool {
+    public static func >(lhs: LongInt, rhs: LongInt) -> Bool {
         if lhs.value.count < rhs.value.count {
             return false
         }
@@ -267,23 +267,23 @@ public class LongInt: Equatable {
         return false
     }
     
-    static func >(lhs: LongInt, rhs: Int) -> Bool {
+    public static func >(lhs: LongInt, rhs: Int) -> Bool {
         return lhs > LongInt(rhs)
     }
     
-    static func >(lhs: Int, rhs: LongInt) -> Bool {
+    public static func >(lhs: Int, rhs: LongInt) -> Bool {
         return LongInt(lhs) > rhs
     }
     
-    static func >=(lhs: LongInt, rhs: LongInt) -> Bool {
+    public static func >=(lhs: LongInt, rhs: LongInt) -> Bool {
         return lhs > rhs || lhs == rhs
     }
     
-    static func >=(lhs: LongInt, rhs: Int) -> Bool {
+    public static func >=(lhs: LongInt, rhs: Int) -> Bool {
         return lhs > LongInt(rhs) || lhs == LongInt(rhs)
     }
     
-    static func >=(lhs: Int, rhs: LongInt) -> Bool {
+    public static func >=(lhs: Int, rhs: LongInt) -> Bool {
         return LongInt(lhs) > rhs || LongInt(lhs) == rhs
     }
     
